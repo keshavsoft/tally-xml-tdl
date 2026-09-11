@@ -4,7 +4,7 @@ import {
     createEnvelope,
     sendToTally,
     fetchCollection
-} from "../../../../src/v1/index.js";
+} from "../../../../src/v2/index.js";
 
 const run = async () => {
     console.log("=== Test 1: High-level fetchCollection ===");
