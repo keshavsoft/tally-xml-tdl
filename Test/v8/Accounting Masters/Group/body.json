@@ -1,8 +1,0 @@
-{
-  "name": "KeshavGroups",
-  "type": "Group",
-  "fields": [
-    "Name",
-    "Parent"
-  ]
-}
