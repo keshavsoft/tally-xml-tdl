@@ -75,8 +75,4 @@ export interface ExecuteBodyOptions {
  */
 export function executeBody<T = any>(body: Record<string, any>, options?: ExecuteBodyOptions): Promise<T>;
 
-export * as v1 from "./src/v1/index.js";
-export * as v2 from "./src/v2/index.js";
-export * as v3 from "./src/v3/index.js";
-
 

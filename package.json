@@ -17,6 +17,16 @@
       "import": "./src/v1/index.js",
       "default": "./src/v1/index.js"
     },
+    "./v2": {
+      "types": "./src/v2/index.d.ts",
+      "import": "./src/v2/index.js",
+      "default": "./src/v2/index.js"
+    },
+    "./v3": {
+      "types": "./src/v3/index.d.ts",
+      "import": "./src/v3/index.js",
+      "default": "./src/v3/index.js"
+    },
     "./*": "./src/*.js"
   },
   "files": [

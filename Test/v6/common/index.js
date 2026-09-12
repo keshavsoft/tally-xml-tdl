@@ -1,11 +1,7 @@
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
-import {
-    jsonToXml,
-    sendToTally,
-    fetchCollection
-} from "../../../src/v1/index.js";
+import { executeBody } from "../../../src/v3/index.js";
 
 export const getRootDir = (startDir) => {
     let cur = startDir;
@@ -37,18 +33,14 @@ export const runTest = async (callerUrl, options = {}) => {
     const bodyPath = options.bodyPath || path.join(dirName, "body.json");
     const body = options.body || JSON.parse(fs.readFileSync(bodyPath, "utf8"));
 
-    let res;
-    if (body.ENVELOPE) {
-        const xml = jsonToXml(body);
-        res = await sendToTally({ xml, url: options.url });
-    } else if (body.name && body.type) {
-        res = await fetchCollection({ ...body, url: options.url });
-    } else {
-        throw new Error(`Unrecognized body format in ${bodyPath}`);
-    }
+    const data = await executeBody(body, {
+        full: options.full ?? false,
+        url: options.url
+    });
 
-    const dataToSave = options.transform ? options.transform(res) : res;
+    const dataToSave = options.transform ? options.transform(data) : data;
     saveOutput({ dirName, inData: dataToSave, inFileName: options.inFileName || "data.json" });
 
-    return res;
+    return data;
 };
+
