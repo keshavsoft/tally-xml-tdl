@@ -84,4 +84,3 @@ export const createCollectionEnvelope = ({
 export const buildCollectionXml = (options) => {
     return jsonToXml(createCollectionEnvelope(options));
 };
-

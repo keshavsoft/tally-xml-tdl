@@ -27,6 +27,11 @@
       "import": "./src/v3/index.js",
       "default": "./src/v3/index.js"
     },
+    "./v4": {
+      "types": "./src/v4/index.d.ts",
+      "import": "./src/v4/index.js",
+      "default": "./src/v4/index.js"
+    },
     "./*": "./src/*.js"
   },
   "files": [

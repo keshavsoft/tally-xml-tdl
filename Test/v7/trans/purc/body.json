@@ -4,7 +4,7 @@
       "VERSION": 1,
       "TALLYREQUEST": "EXPORT",
       "TYPE": "COLLECTION",
-      "ID": "KeshavSalesInventory"
+      "ID": "KeshavPurchaseInventory"
     },
     "BODY": {
       "DESC": {
@@ -16,17 +16,17 @@
           },
           "SVTODATE": {
             "@_TYPE": "Date",
-            "#text": "10-Apr-2026"
+            "#text": "30-Apr-2026"
           }
         },
         "TDL": {
           "TDLMESSAGE": {
             "COLLECTION": {
-              "@_NAME": "KeshavSalesInventory",
+              "@_NAME": "KeshavPurchaseInventory",
               "TYPE": "Vouchers:VoucherType",
-              "CHILDOF": "$$VchTypeSales",
+              "CHILDOF": "$$VchTypePurchase",
               "BELONGSTO": "Yes",
-              "FETCH": "AllInventoryEntries"
+              "FETCH": "Date, VoucherNumber, VoucherTypeName, PartyLedgerName, AllInventoryEntries"
             }
           }
         }

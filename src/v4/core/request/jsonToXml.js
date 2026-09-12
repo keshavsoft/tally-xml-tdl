@@ -1,7 +1,7 @@
 import { XMLBuilder } from "fast-xml-parser";
 
 /**
- * Converts a JavaScript Object into formatted XML string.
+ * Converts a JavaScript Object into a formatted XML string.
  * Preserves XML attributes prefixed with `@_`.
  * 
  * @param {object} jsonObj - The JavaScript object to serialize.
@@ -17,4 +17,3 @@ export const jsonToXml = (jsonObj, options = {}) => {
 
     return builder.build(jsonObj);
 };
-

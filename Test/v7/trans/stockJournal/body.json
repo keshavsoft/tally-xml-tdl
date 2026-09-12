@@ -4,7 +4,7 @@
       "VERSION": 1,
       "TALLYREQUEST": "EXPORT",
       "TYPE": "COLLECTION",
-      "ID": "KeshavSalesInventory"
+      "ID": "KeshavStockJournal"
     },
     "BODY": {
       "DESC": {
@@ -16,17 +16,21 @@
           },
           "SVTODATE": {
             "@_TYPE": "Date",
-            "#text": "10-Apr-2026"
+            "#text": "1-Apr-2026"
           }
         },
         "TDL": {
           "TDLMESSAGE": {
             "COLLECTION": {
-              "@_NAME": "KeshavSalesInventory",
-              "TYPE": "Vouchers:VoucherType",
-              "CHILDOF": "$$VchTypeSales",
-              "BELONGSTO": "Yes",
-              "FETCH": "AllInventoryEntries"
+              "@_NAME": "KeshavStockJournal",
+              "TYPE": "Voucher",
+              "FILTER": "IsStockJournal",
+              "FETCH": "Date, VoucherNumber, VoucherTypeName, PartyLedgerName, AllInventoryEntries"
+            },
+            "SYSTEM": {
+              "@_TYPE": "Formulae",
+              "@_NAME": "IsStockJournal",
+              "#text": "$Parent:VoucherType:$VoucherTypeName = \"Stock Journal\""
             }
           }
         }

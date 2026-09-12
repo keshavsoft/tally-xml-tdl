@@ -39,6 +39,16 @@ export function createCollectionEnvelope(options: CreateCollectionEnvelopeOption
  */
 export function buildCollectionXml(options: CreateCollectionEnvelopeOptions): string;
 
+export interface SendXmlOptions {
+    xml: string;
+    url?: string;
+}
+
+/**
+ * Sends a raw XML string to Tally via HTTP POST and returns the raw response text.
+ */
+export function sendXml(options: SendXmlOptions): Promise<string>;
+
 export interface SendToTallyOptions {
     xml: string;
     url?: string;
@@ -75,4 +85,19 @@ export interface ExecuteBodyOptions {
  */
 export function executeBody<T = any>(body: Record<string, any>, options?: ExecuteBodyOptions): Promise<T>;
 
+/**
+ * Validates a parsed Tally response object.
+ */
+export function validateResponse<T = any>(res: T): T;
 
+/**
+ * Extracts and unwraps the collection entities from a parsed Tally response object.
+ */
+export function extractCollection<T = any>(res: any): T;
+
+// Story modules
+export * as request from "./core/request/index.js";
+export * as transport from "./core/transport/index.js";
+export * as response from "./core/response/index.js";
+export * as execute from "./core/execute/index.js";
+export * as core from "./core/index.js";
