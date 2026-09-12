@@ -1,5 +1,25 @@
-import { xmlToJson } from "../../../../src/v1/index.js";
 import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
+import { xmlToJson } from "../../../../src/v1/index.js";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const saveOutput = ({ inData, inFileName = "flat.json" }) => {
+    const localData = inData;
+    const localFileName = inFileName;
+
+    const rootDir = path.resolve(__dirname, "../../../..");
+    const testDir = path.join(rootDir, "Test");
+    const relPath = path.relative(testDir, __dirname);
+    const targetDir = path.join(rootDir, "Data", relPath);
+
+    fs.mkdirSync(targetDir, { recursive: true });
+    const targetFilePath = path.join(targetDir, localFileName);
+    fs.writeFileSync(targetFilePath, JSON.stringify(localData, null, 2));
+    console.log(`Saved output to: ${targetFilePath}`);
+};
 
 const xml = `<ENVELOPE>
     <HEADER>
@@ -16,13 +36,13 @@ const xml = `<ENVELOPE>
             <STATICVARIABLES>
                 <SVEXPORTFORMAT>$$SysName:XML</SVEXPORTFORMAT>
                 <SVFROMDATE TYPE="Date">1-Apr-2026</SVFROMDATE>
-                <SVTODATE TYPE="Date">30-Apr-2026</SVTODATE>
+                <SVTODATE TYPE="Date">1-Apr-2026</SVTODATE>
             </STATICVARIABLES>
 
             <TDL>
                 <TDLMESSAGE>
 
-                 <COLLECTION NAME="KeshavStockJournal">
+                  <COLLECTION NAME="KeshavStockJournal">
 
     <TYPE>Voucher</TYPE>
 
@@ -64,7 +84,7 @@ const xmlStringToArray = (VOUCHERS) => {
 
         const inventory = Array.isArray(inventoryItems)
             ? inventoryItems
-            : [inventoryItems];
+            : (inventoryItems ? [inventoryItems] : []);
 
         inventory.forEach(item => {
 
@@ -79,7 +99,7 @@ const xmlStringToArray = (VOUCHERS) => {
             batchArray.forEach(batch => {
 
                 result.push({
-                    DATE: VOUCHER.DATE["#text"],
+                    DATE: VOUCHER.DATE?.["#text"] || VOUCHER.DATE,
                     VOUCHERNUMBER: VOUCHER.VOUCHERNUMBER,
                     VOUCHERTYPENAME: VOUCHER.VOUCHERTYPENAME,
 
@@ -123,11 +143,11 @@ const sendToTally = async ({
 
     const VOUCHERS = Array.isArray(vouchers)
         ? vouchers
-        : [vouchers];
+        : (vouchers ? [vouchers] : []);
 
-    const result = xmlStringToArray  (VOUCHERS)
+    const result = xmlStringToArray(VOUCHERS);
 
-    fs.writeFileSync("flat.json", JSON.stringify(result));
+    saveOutput({ inData: result, inFileName: "flat.json" });
 
     return fromTally;
 };

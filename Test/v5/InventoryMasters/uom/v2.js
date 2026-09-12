@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
-import { fetchCollection } from "../../../src/v1/index.js";
+import { fetchCollection } from "../../../../src/v1/index.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -10,7 +10,7 @@ const saveOutput = ({ inData, inFileName = "data.json" }) => {
     const localData = inData;
     const localFileName = inFileName;
 
-    const rootDir = path.resolve(__dirname, "../../..");
+    const rootDir = path.resolve(__dirname, "../../../..");
     const testDir = path.join(rootDir, "Test");
     const relPath = path.relative(testDir, __dirname);
     const targetDir = path.join(rootDir, "Data", relPath);
@@ -22,15 +22,24 @@ const saveOutput = ({ inData, inFileName = "data.json" }) => {
 };
 
 const run = async () => {
-    console.log("=== Testing Company fetch via src/v1 fetchCollection ===");
+    console.log("=== Testing Units of Measure (UOM) via src/v1 fetchCollection ===");
     const res = await fetchCollection({
-        name: "KeshavOpenCompanies",
-        type: "Company",
-        fields: ["Name"]
+        name: "KeshavUnits",
+        type: "Unit",
+        fields: [
+            "Name",
+            "OriginalName",
+            "IsSimpleUnit",
+            "DecimalPlaces",
+            "BaseUnits",
+            "AdditionalUnits",
+            "Conversion"
+        ]
     });
 
-    const company = res?.ENVELOPE?.BODY?.DATA?.COLLECTION?.COMPANY;
-    console.log("Fetched company:", company);
+    const units = res?.ENVELOPE?.BODY?.DATA?.COLLECTION?.UNIT;
+    console.log("Total units fetched:", Array.isArray(units) ? units.length : (units ? 1 : 0));
+    console.log("Sample unit:", Array.isArray(units) ? units[0] : units);
 
     saveOutput({ inData: res });
 

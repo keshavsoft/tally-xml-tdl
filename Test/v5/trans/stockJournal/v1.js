@@ -1,12 +1,32 @@
-import { xmlToJson } from "../../../../src/v1/index.js";
 import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
+import { xmlToJson } from "../../../../src/v1/index.js";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const saveOutput = ({ inData, inFileName = "data.json" }) => {
+    const localData = inData;
+    const localFileName = inFileName;
+
+    const rootDir = path.resolve(__dirname, "../../../..");
+    const testDir = path.join(rootDir, "Test");
+    const relPath = path.relative(testDir, __dirname);
+    const targetDir = path.join(rootDir, "Data", relPath);
+
+    fs.mkdirSync(targetDir, { recursive: true });
+    const targetFilePath = path.join(targetDir, localFileName);
+    fs.writeFileSync(targetFilePath, JSON.stringify(localData, null, 2));
+    console.log(`Saved output to: ${targetFilePath}`);
+};
 
 const xml = `<ENVELOPE>
     <HEADER>
         <VERSION>1</VERSION>
         <TALLYREQUEST>EXPORT</TALLYREQUEST>
         <TYPE>COLLECTION</TYPE>
-        <ID>KeshavSalesInventory</ID>
+        <ID>KeshavStockJournal</ID>
     </HEADER>
 
     <BODY>
@@ -22,13 +42,13 @@ const xml = `<ENVELOPE>
             <TDL>
                 <TDLMESSAGE>
 
-                  <COLLECTION NAME="KeshavSalesInventory">
+                  <COLLECTION NAME="KeshavStockJournal">
 
-    <TYPE>Vouchers:VoucherType</TYPE>
+    <TYPE>Voucher</TYPE>
 
-    <CHILDOF>$$VchTypeSales</CHILDOF>
-
-    <BELONGSTO>Yes</BELONGSTO>
+    <FILTER>
+        IsStockJournal
+    </FILTER>
 
     <FETCH>
         Date,
@@ -39,6 +59,11 @@ const xml = `<ENVELOPE>
     </FETCH>
 
 </COLLECTION>
+
+<SYSTEM TYPE="Formulae" NAME="IsStockJournal">
+    $Parent:VoucherType:$VoucherTypeName = "Stock Journal"
+</SYSTEM>
+
 
 </TDLMESSAGE>
             </TDL>
@@ -65,7 +90,7 @@ const sendToTally = async ({
 
     const fromTally = xmlToJson(text);
 
-    fs.writeFileSync("data.json", JSON.stringify(fromTally));
+    saveOutput({ inData: fromTally });
 
     return fromTally;
 };

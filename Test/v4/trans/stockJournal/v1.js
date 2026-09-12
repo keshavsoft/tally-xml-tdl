@@ -1,5 +1,25 @@
-import { xmlToJson } from "../../../../src/v1/index.js";
 import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
+import { xmlToJson } from "../../../../src/v1/index.js";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const saveOutput = ({ inData, inFileName = "data.json" }) => {
+    const localData = inData;
+    const localFileName = inFileName;
+
+    const rootDir = path.resolve(__dirname, "../../../..");
+    const testDir = path.join(rootDir, "Test");
+    const relPath = path.relative(testDir, __dirname);
+    const targetDir = path.join(rootDir, "Data", relPath);
+
+    fs.mkdirSync(targetDir, { recursive: true });
+    const targetFilePath = path.join(targetDir, localFileName);
+    fs.writeFileSync(targetFilePath, JSON.stringify(localData, null, 2));
+    console.log(`Saved output to: ${targetFilePath}`);
+};
 
 const xml = `<ENVELOPE>
     <HEADER>
@@ -16,13 +36,13 @@ const xml = `<ENVELOPE>
             <STATICVARIABLES>
                 <SVEXPORTFORMAT>$$SysName:XML</SVEXPORTFORMAT>
                 <SVFROMDATE TYPE="Date">1-Apr-2026</SVFROMDATE>
-                <SVTODATE TYPE="Date">30-Apr-2026</SVTODATE>
+                <SVTODATE TYPE="Date">1-Apr-2026</SVTODATE>
             </STATICVARIABLES>
 
             <TDL>
                 <TDLMESSAGE>
 
-                 <COLLECTION NAME="KeshavStockJournal">
+                  <COLLECTION NAME="KeshavStockJournal">
 
     <TYPE>Voucher</TYPE>
 
@@ -70,7 +90,7 @@ const sendToTally = async ({
 
     const fromTally = xmlToJson(text);
 
-    fs.writeFileSync("data.json", JSON.stringify(fromTally));
+    saveOutput({ inData: fromTally });
 
     return fromTally;
 };

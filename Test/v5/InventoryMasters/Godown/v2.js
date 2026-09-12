@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
-import { fetchCollection } from "../../../src/v1/index.js";
+import { fetchCollection } from "../../../../src/v1/index.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -10,7 +10,7 @@ const saveOutput = ({ inData, inFileName = "data.json" }) => {
     const localData = inData;
     const localFileName = inFileName;
 
-    const rootDir = path.resolve(__dirname, "../../..");
+    const rootDir = path.resolve(__dirname, "../../../..");
     const testDir = path.join(rootDir, "Test");
     const relPath = path.relative(testDir, __dirname);
     const targetDir = path.join(rootDir, "Data", relPath);
@@ -22,15 +22,16 @@ const saveOutput = ({ inData, inFileName = "data.json" }) => {
 };
 
 const run = async () => {
-    console.log("=== Testing Company fetch via src/v1 fetchCollection ===");
+    console.log("=== Testing Godowns fetch via src/v1 fetchCollection ===");
     const res = await fetchCollection({
-        name: "KeshavOpenCompanies",
-        type: "Company",
-        fields: ["Name"]
+        name: "KeshavGodowns",
+        type: "Godown",
+        fields: ["Name", "Parent"]
     });
 
-    const company = res?.ENVELOPE?.BODY?.DATA?.COLLECTION?.COMPANY;
-    console.log("Fetched company:", company);
+    const godowns = res?.ENVELOPE?.BODY?.DATA?.COLLECTION?.GODOWN;
+    console.log("Total godowns fetched:", Array.isArray(godowns) ? godowns.length : (godowns ? 1 : 0));
+    console.log("Sample godown:", Array.isArray(godowns) ? godowns[0] : godowns);
 
     saveOutput({ inData: res });
 

@@ -1,12 +1,32 @@
-import { xmlToJson } from "../../../../src/v1/index.js";
 import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
+import { xmlToJson } from "../../../../src/v1/index.js";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const saveOutput = ({ inData, inFileName = "data.json" }) => {
+    const localData = inData;
+    const localFileName = inFileName;
+
+    const rootDir = path.resolve(__dirname, "../../../..");
+    const testDir = path.join(rootDir, "Test");
+    const relPath = path.relative(testDir, __dirname);
+    const targetDir = path.join(rootDir, "Data", relPath);
+
+    fs.mkdirSync(targetDir, { recursive: true });
+    const targetFilePath = path.join(targetDir, localFileName);
+    fs.writeFileSync(targetFilePath, JSON.stringify(localData, null, 2));
+    console.log(`Saved output to: ${targetFilePath}`);
+};
 
 const xml = `<ENVELOPE>
     <HEADER>
         <VERSION>1</VERSION>
         <TALLYREQUEST>EXPORT</TALLYREQUEST>
         <TYPE>COLLECTION</TYPE>
-        <ID>KeshavSalesInventory</ID>
+        <ID>KeshavPurchaseInventory</ID>
     </HEADER>
 
     <BODY>
@@ -22,15 +42,19 @@ const xml = `<ENVELOPE>
             <TDL>
                 <TDLMESSAGE>
 
-                  <COLLECTION NAME="KeshavSalesInventory">
+                  <COLLECTION NAME="KeshavPurchaseInventory">
 
     <TYPE>Vouchers:VoucherType</TYPE>
 
-    <CHILDOF>$$VchTypeSales</CHILDOF>
+    <CHILDOF>$$VchTypePurchase</CHILDOF>
 
     <BELONGSTO>Yes</BELONGSTO>
 
     <FETCH>
+        Date,
+        VoucherNumber,
+        VoucherTypeName,
+        PartyLedgerName,
         AllInventoryEntries
     </FETCH>
 
@@ -61,7 +85,7 @@ const sendToTally = async ({
 
     const fromTally = xmlToJson(text);
 
-    fs.writeFileSync("data.json", JSON.stringify(fromTally));
+    saveOutput({ inData: fromTally });
 
     return fromTally;
 };
