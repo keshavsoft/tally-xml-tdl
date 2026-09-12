@@ -1,0 +1,7 @@
+{
+  "name": "KeshavOpenCompanies",
+  "type": "Company",
+  "fields": [
+    "Name"
+  ]
+}

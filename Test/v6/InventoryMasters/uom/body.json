@@ -1,0 +1,13 @@
+{
+  "name": "KeshavUnits",
+  "type": "Unit",
+  "fields": [
+    "Name",
+    "OriginalName",
+    "IsSimpleUnit",
+    "DecimalPlaces",
+    "BaseUnits",
+    "AdditionalUnits",
+    "Conversion"
+  ]
+}
