@@ -1,0 +1,8 @@
+{
+  "name": "KeshavStockCategories",
+  "type": "StockCategory",
+  "fields": [
+    "Name",
+    "Parent"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "name": "KeshavVoucherTypes",
+  "type": "VoucherType",
+  "fields": [
+    "Name",
+    "Parent",
+    "IsDeemedPositive",
+    "IsOptional",
+    "IsActive"
+  ]
+}

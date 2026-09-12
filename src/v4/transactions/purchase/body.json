@@ -1,0 +1,36 @@
+{
+  "ENVELOPE": {
+    "HEADER": {
+      "VERSION": 1,
+      "TALLYREQUEST": "EXPORT",
+      "TYPE": "COLLECTION",
+      "ID": "KeshavPurchaseInventory"
+    },
+    "BODY": {
+      "DESC": {
+        "STATICVARIABLES": {
+          "SVEXPORTFORMAT": "$$SysName:XML",
+          "SVFROMDATE": {
+            "@_TYPE": "Date",
+            "#text": "1-Apr-2026"
+          },
+          "SVTODATE": {
+            "@_TYPE": "Date",
+            "#text": "30-Apr-2026"
+          }
+        },
+        "TDL": {
+          "TDLMESSAGE": {
+            "COLLECTION": {
+              "@_NAME": "KeshavPurchaseInventory",
+              "TYPE": "Vouchers:VoucherType",
+              "CHILDOF": "$$VchTypePurchase",
+              "BELONGSTO": "Yes",
+              "FETCH": "Date, VoucherNumber, VoucherTypeName, PartyLedgerName, AllInventoryEntries"
+            }
+          }
+        }
+      }
+    }
+  }
+}

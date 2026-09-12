@@ -1,0 +1,8 @@
+{
+  "name": "KeshavGodowns",
+  "type": "Godown",
+  "fields": [
+    "Name",
+    "Parent"
+  ]
+}

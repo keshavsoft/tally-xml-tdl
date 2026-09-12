@@ -101,3 +101,32 @@ export * as transport from "./core/transport/index.js";
 export * as response from "./core/response/index.js";
 export * as execute from "./core/execute/index.js";
 export * as core from "./core/index.js";
+
+export interface DomainNodeCallable<T = any> {
+    (options?: ExecuteBodyOptions): Promise<T>;
+    body: Record<string, any>;
+}
+
+export namespace masters {
+    namespace accounting {
+        const group: DomainNodeCallable;
+        const voucherTypes: DomainNodeCallable;
+    }
+    namespace inventory {
+        const godown: DomainNodeCallable;
+        const stockCategory: DomainNodeCallable;
+        const uom: DomainNodeCallable;
+    }
+}
+
+export namespace transactions {
+    const purchase: DomainNodeCallable;
+    const purc: DomainNodeCallable;
+    const sale: DomainNodeCallable;
+    const stockJournal: DomainNodeCallable;
+}
+
+export const company: DomainNodeCallable;
+export const trans: typeof transactions;
+export const comp: typeof company;
+
