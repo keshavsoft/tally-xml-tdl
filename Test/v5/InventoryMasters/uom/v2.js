@@ -21,21 +21,11 @@ const saveOutput = ({ inData, inFileName = "data.json" }) => {
     console.log(`Saved output to: ${targetFilePath}`);
 };
 
+const body = JSON.parse(fs.readFileSync(path.join(__dirname, "body.json"), "utf8"));
+
 const run = async () => {
-    console.log("=== Testing Units of Measure (UOM) via src/v1 fetchCollection ===");
-    const res = await fetchCollection({
-        name: "KeshavUnits",
-        type: "Unit",
-        fields: [
-            "Name",
-            "OriginalName",
-            "IsSimpleUnit",
-            "DecimalPlaces",
-            "BaseUnits",
-            "AdditionalUnits",
-            "Conversion"
-        ]
-    });
+    console.log("=== Testing Units of Measure (UOM) via src/v1 fetchCollection with body.json ===");
+    const res = await fetchCollection(body);
 
     const units = res?.ENVELOPE?.BODY?.DATA?.COLLECTION?.UNIT;
     console.log("Total units fetched:", Array.isArray(units) ? units.length : (units ? 1 : 0));

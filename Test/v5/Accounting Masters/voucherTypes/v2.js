@@ -21,19 +21,11 @@ const saveOutput = ({ inData, inFileName = "data.json" }) => {
     console.log(`Saved output to: ${targetFilePath}`);
 };
 
+const body = JSON.parse(fs.readFileSync(path.join(__dirname, "body.json"), "utf8"));
+
 const run = async () => {
-    console.log("=== Testing Voucher Types via src/v1 fetchCollection ===");
-    const res = await fetchCollection({
-        name: "KeshavVoucherTypes",
-        type: "VoucherType",
-        fields: [
-            "Name",
-            "Parent",
-            "IsDeemedPositive",
-            "IsOptional",
-            "IsActive"
-        ]
-    });
+    console.log("=== Testing Voucher Types via src/v1 fetchCollection with body.json ===");
+    const res = await fetchCollection(body);
 
     const vTypes = res?.ENVELOPE?.BODY?.DATA?.COLLECTION?.VOUCHERTYPE;
     console.log("Total Voucher Types fetched:", Array.isArray(vTypes) ? vTypes.length : (vTypes ? 1 : 0));

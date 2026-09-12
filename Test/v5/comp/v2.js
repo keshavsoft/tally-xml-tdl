@@ -21,13 +21,11 @@ const saveOutput = ({ inData, inFileName = "data.json" }) => {
     console.log(`Saved output to: ${targetFilePath}`);
 };
 
+const body = JSON.parse(fs.readFileSync(path.join(__dirname, "body.json"), "utf8"));
+
 const run = async () => {
-    console.log("=== Testing Company fetch via src/v1 fetchCollection ===");
-    const res = await fetchCollection({
-        name: "KeshavOpenCompanies",
-        type: "Company",
-        fields: ["Name"]
-    });
+    console.log("=== Testing Company fetch via src/v1 fetchCollection with body.json ===");
+    const res = await fetchCollection(body);
 
     const company = res?.ENVELOPE?.BODY?.DATA?.COLLECTION?.COMPANY;
     console.log("Fetched company:", company);

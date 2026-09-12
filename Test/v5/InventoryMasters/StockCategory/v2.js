@@ -21,13 +21,11 @@ const saveOutput = ({ inData, inFileName = "data.json" }) => {
     console.log(`Saved output to: ${targetFilePath}`);
 };
 
+const body = JSON.parse(fs.readFileSync(path.join(__dirname, "body.json"), "utf8"));
+
 const run = async () => {
-    console.log("=== Testing Stock Categories via src/v1 fetchCollection ===");
-    const res = await fetchCollection({
-        name: "KeshavStockCategories",
-        type: "StockCategory",
-        fields: ["Name", "Parent"]
-    });
+    console.log("=== Testing Stock Categories via src/v1 fetchCollection with body.json ===");
+    const res = await fetchCollection(body);
 
     const categories = res?.ENVELOPE?.BODY?.DATA?.COLLECTION?.STOCKCATEGORY;
     console.log("Total Stock Categories fetched:", Array.isArray(categories) ? categories.length : (categories ? 1 : 0));

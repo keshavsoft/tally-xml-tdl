@@ -24,7 +24,7 @@ const getAllFiles = (dirPath, arrayOfFiles = []) => {
 const testFiles = getAllFiles(__dirname);
 
 console.log(`\n========================================`);
-console.log(`Running ${testFiles.length} Tests in Test/v4 using src/v1`);
+console.log(`Running ${testFiles.length} Tests in Test/v5 using src/v1`);
 console.log(`========================================\n`);
 
 let passed = 0;
@@ -65,5 +65,5 @@ if (failed > 0) {
     });
     process.exit(1);
 } else {
-    console.log("All Test/v4 tests passed successfully using src/v1!\n");
+    console.log("All Test/v5 tests passed successfully using src/v1!\n");
 }
