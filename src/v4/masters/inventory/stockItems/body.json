@@ -1,0 +1,8 @@
+{
+  "name": "KeshavStockItems",
+  "type": "StockItem",
+  "fields": [
+    "Name",
+    "Parent"
+  ]
+}
