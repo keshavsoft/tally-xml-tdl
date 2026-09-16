@@ -3,6 +3,91 @@ import { saveOutput } from "../common/index.js";
 
 const data = await transactions.purchase();
 
+function isPlainObject(val) {
+    return val !== null && typeof val === 'object' && !Array.isArray(val);
+};
+
+const forAccounting = (inAccount) => {
+    if (isPlainObject(inAccount)) {
+        return [{
+            ledgerName: inAccount.LEDGERNAME,
+            isDeemedPositive: inAccount.ISDEEMEDPOSITIVE,
+            amount: inAccount.AMOUNT
+        }]
+    };
+
+    if (Array.isArray(inAccount)) {
+        return inAccount.map(element => {
+            return {
+                ledgerName: element.LEDGERNAME,
+                isDeemedPositive: element.ISDEEMEDPOSITIVE,
+                amount: element.AMOUNT
+            }
+        });
+
+    };
+};
+
+const forBatch = (inBatch) => {
+    if (isPlainObject(inBatch)) {
+        return [{
+            godownName: inBatch.GODOWNNAME,
+            batchName: inBatch.BATCHNAME,
+            destinationGodownName: inBatch.DESTINATIONGODOWNNAME,
+            batchId: inBatch.BATCHID["#text"],
+            amount: inBatch.AMOUNT,
+            actualQty: inBatch.ACTUALQTY,
+            billedQty: inBatch.BILLEDQTY,
+            batchRate: inBatch.BATCHRATE?.["#text"]
+        }]
+    };
+
+    if (Array.isArray(inBatch)) {
+        return inBatch.map(element => {
+            return {
+                godownName: element.GODOWNNAME,
+                batchName: element.BATCHNAME,
+                destinationGodownName: element.DESTINATIONGODOWNNAME,
+                batchId: element.BATCHID["#text"],
+                amount: element.AMOUNT,
+                actualQty: element.ACTUALQTY,
+                billedQty: element.BILLEDQTY,
+                batchRate: element.BATCHRATE?.["#text"]
+            }
+        });
+
+    };
+};
+
+const forInventory = (inItem) => {
+    if (isPlainObject(inItem)) {
+        return [{
+            stockItemName: inItem.STOCKITEMNAME,
+            rate: inItem.RATE,
+            amount: inItem.AMOUNT,
+            actualQty: inItem.ACTUALQTY,
+            billedQty: inItem.BILLEDQTY,
+            batches: forBatch(inItem["BATCHALLOCATIONS.LIST"]),
+            accounting: forAccounting(inItem["ACCOUNTINGALLOCATIONS.LIST"])
+        }]
+    };
+
+    if (Array.isArray(inItem)) {
+        return inItem.map(element => {
+            return {
+                stockItemName: element.STOCKITEMNAME,
+                rate: element.RATE,
+                amount: element.AMOUNT,
+                actualQty: element.ACTUALQTY,
+                billedQty: element.BILLEDQTY,
+                batches: forBatch(element["BATCHALLOCATIONS.LIST"]),
+                accounting: forAccounting(element["ACCOUNTINGALLOCATIONS.LIST"])
+            }
+        });
+
+    };
+};
+
 const asSimpleArray = data.VOUCHER.map(element => {
     return {
         name: element.DATE["#text"],
@@ -17,7 +102,7 @@ const asSimpleArray = data.VOUCHER.map(element => {
         masterID: element.MASTERID["#text"],
         voucherKey: element.VOUCHERKEY["#text"],
         voucherRetainKey: element.VOUCHERRETAINKEY["#text"],
-        allInventoryEntries: element["ALLINVENTORYENTRIES.LIST"]
+        allInventoryEntries: forInventory(element["ALLINVENTORYENTRIES.LIST"])
     }
 });
 
