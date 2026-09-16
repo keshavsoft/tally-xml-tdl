@@ -14,9 +14,9 @@
         "TDL": {
           "TDLMESSAGE": {
             "COLLECTION": {
-              "@_NAME": "KeshavStockItems",
+              "@_NAME": "KeshavStockBalances",
               "TYPE": "StockItem",
-              "FETCH": "*"
+              "FETCH": "Name,OpeningBalance,ClosingBalance"
             }
           }
         }
