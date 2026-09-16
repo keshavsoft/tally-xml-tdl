@@ -7,6 +7,27 @@ function isPlainObject(val) {
     return val !== null && typeof val === 'object' && !Array.isArray(val);
 };
 
+const forLedgerEntries = (inLedgerEntries) => {
+    if (isPlainObject(inLedgerEntries)) {
+        return [{
+            ledgerName: inLedgerEntries.LEDGERNAME?.["#text"],
+            isDeemedPositive: inLedgerEntries.ISDEEMEDPOSITIVE?.["#text"],
+            amount: inLedgerEntries.AMOUNT?.["#text"]
+        }]
+    };
+
+    if (Array.isArray(inLedgerEntries)) {
+        return inLedgerEntries.map(element => {
+            return {
+                ledgerName: element.LEDGERNAME?.["#text"],
+                isDeemedPositive: element.ISDEEMEDPOSITIVE?.["#text"],
+                amount: element.AMOUNT?.["#text"]
+            }
+        });
+
+    };
+};
+
 const forAccounting = (inAccount) => {
     if (isPlainObject(inAccount)) {
         return [{
@@ -102,7 +123,8 @@ const asSimpleArray = data.VOUCHER.map(element => {
         masterID: element.MASTERID["#text"],
         voucherKey: element.VOUCHERKEY["#text"],
         voucherRetainKey: element.VOUCHERRETAINKEY["#text"],
-        allInventoryEntries: forInventory(element["ALLINVENTORYENTRIES.LIST"])
+        allInventoryEntries: forInventory(element["ALLINVENTORYENTRIES.LIST"]),
+        allLedgerEntries: forLedgerEntries(element["LEDGERENTRIES.LIST"])
     }
 });
 
