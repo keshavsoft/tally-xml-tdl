@@ -16,7 +16,7 @@
           },
           "SVTODATE": {
             "@_TYPE": "Date",
-            "#text": "10-Apr-2026"
+            "#text": "1-Apr-2026"
           }
         },
         "TDL": {
@@ -26,7 +26,11 @@
               "TYPE": "Vouchers:VoucherType",
               "CHILDOF": "$$VchTypeSales",
               "BELONGSTO": "Yes",
-              "FETCH": "AllInventoryEntries"
+              "FETCH": [
+                "*",
+                "AllLedgerEntries",
+                "AllInventoryEntries"
+              ]
             }
           }
         }
