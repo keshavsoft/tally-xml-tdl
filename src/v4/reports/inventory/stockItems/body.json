@@ -4,7 +4,7 @@
       "VERSION": 1,
       "TALLYREQUEST": "EXPORT",
       "TYPE": "COLLECTION",
-      "ID": "KeshavStockItems"
+      "ID": "KeshavStockBalances"
     },
     "BODY": {
       "DESC": {
