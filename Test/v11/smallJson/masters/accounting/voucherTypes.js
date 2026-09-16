@@ -1,4 +1,4 @@
-import { masters } from "../../../../src/v4/index.js";
+import { masters } from "../../../../../src/v4/index.js";
 import { saveOutput } from "../../common/index.js";
 
 const data = await masters.accounting.voucherTypes();
