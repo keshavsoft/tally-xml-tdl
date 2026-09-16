@@ -1,4 +1,4 @@
-import { transactions } from "../../../src/v4/index.js";
+import { transactions } from "../../../../src/v4/index.js";
 import { saveOutput } from "../common/index.js";
 
 const data = await transactions.sale();
