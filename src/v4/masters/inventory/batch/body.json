@@ -1,0 +1,26 @@
+{
+  "ENVELOPE": {
+    "HEADER": {
+      "VERSION": 1,
+      "TALLYREQUEST": "EXPORT",
+      "TYPE": "COLLECTION",
+      "ID": "KeshavBatches"
+    },
+    "BODY": {
+      "DESC": {
+        "STATICVARIABLES": {
+          "SVEXPORTFORMAT": "$$SysName:XML"
+        },
+        "TDL": {
+          "TDLMESSAGE": {
+            "COLLECTION": {
+              "@_NAME": "KeshavBatches",
+              "TYPE": "StockItem",
+              "FETCH": "Name,Parent,BatchAllocations.*"
+            }
+          }
+        }
+      }
+    }
+  }
+}
