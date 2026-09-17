@@ -9,22 +9,14 @@
     "BODY": {
       "DESC": {
         "STATICVARIABLES": {
-          "SVEXPORTFORMAT": "$$SysName:XML",
-          "SVFROMDATE": {
-            "@_TYPE": "Date",
-            "#text": "1-Apr-2026"
-          },
-          "SVTODATE": {
-            "@_TYPE": "Date",
-            "#text": "1-Apr-2026"
-          }
+          "SVEXPORTFORMAT": "$$SysName:XML"
         },
         "TDL": {
           "TDLMESSAGE": {
             "COLLECTION": {
               "@_NAME": "KeshavStockBalances",
               "TYPE": "StockItem",
-              "FETCH": "Name,OpeningBalance,ClosingBalance,BatchAllocations.*"
+              "FETCH": "Name,OpeningBalance,ClosingBalance"
             }
           }
         }

@@ -24,7 +24,7 @@
             "COLLECTION": {
               "@_NAME": "KeshavStockBalances",
               "TYPE": "StockItem",
-              "FETCH": "Name,OpeningBalance,ClosingBalance,BatchAllocations.*"
+              "FETCH": "Name,OpeningBalance,ClosingBalance"
             }
           }
         }
