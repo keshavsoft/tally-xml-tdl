@@ -10,5 +10,9 @@
   "stockItemsWithBaseUnits": {
     "staticVariables": "<SVEXPORTFORMAT>$$SysName:XML</SVEXPORTFORMAT>",
     "tdlMessage": "<TYPE>StockItem</TYPE><FETCH>$$Alias:Name</FETCH><FETCH>BaseUnits</FETCH>"
+  },
+  "ledgerNames": {
+    "staticVariables": "<SVEXPORTFORMAT>$$SysName:XML</SVEXPORTFORMAT>",
+    "tdlMessage": "<TYPE>Ledger</TYPE><FETCH>$$Alias:Name</FETCH>"
   }
 }
