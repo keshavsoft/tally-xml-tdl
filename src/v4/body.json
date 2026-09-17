@@ -1,17 +1,14 @@
 {
   "uom": {
     "staticVariables": "<SVEXPORTFORMAT>$$SysName:XML</SVEXPORTFORMAT>",
-    "tdlMessage": "<COLLECTION NAME=\"KeshavUnits\"><TYPE>Unit</TYPE><FETCH>$$Alias:Name</FETCH></COLLECTION>",
-    "tdlId": "KeshavUnits"
+    "tdlMessage": "<TYPE>Unit</TYPE><FETCH>$$Alias:Name</FETCH>"
   },
   "stockItems": {
     "staticVariables": "<SVEXPORTFORMAT>$$SysName:XML</SVEXPORTFORMAT>",
-    "tdlMessage": "<COLLECTION NAME=\"KeshavStockItems\"><TYPE>StockItem</TYPE><FETCH>$$Alias:Name</FETCH></COLLECTION>",
-    "tdlId": "KeshavStockItems"
+    "tdlMessage": "<TYPE>StockItem</TYPE><FETCH>$$Alias:Name</FETCH>"
   },
-  "stockItems1": {
+  "stockItemsWithBaseUnits": {
     "staticVariables": "<SVEXPORTFORMAT>$$SysName:XML</SVEXPORTFORMAT>",
-    "tdlMessage": "<COLLECTION NAME=\"KeshavStockItems\"><TYPE>StockItem</TYPE><FETCH>$$Alias:Name</FETCH><FETCH>BaseUnits</FETCH></COLLECTION>",
-    "tdlId": "KeshavStockItems"
+    "tdlMessage": "<TYPE>StockItem</TYPE><FETCH>$$Alias:Name</FETCH><FETCH>BaseUnits</FETCH>"
   }
 }

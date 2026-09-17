@@ -14,17 +14,13 @@ const get = (options = {}) => {
     const company = options.company;
     const jsonId = options.jsonId;
 
-    const { tdlMessage, tdlId } = bodyJson[jsonId];
+    const { tdlMessage } = bodyJson[jsonId];
 
-    const staticVariables = `
-    <SVCURRENTCOMPANY>${company}</SVCURRENTCOMPANY>
-    ${bodyJson[jsonId].staticVariables}
-`;
+    const staticVariables = `<SVCURRENTCOMPANY>${company}</SVCURRENTCOMPANY>`;
 
     const xml = buildXml(body, {
         staticVariables,
-        tdlMessage,
-        tdlId
+        tdlMessage
     });
 
     return executeXml(xml, options);
