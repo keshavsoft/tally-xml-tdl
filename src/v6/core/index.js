@@ -26,6 +26,7 @@ export {
 export {
     executeBody,
     fetchCollection,
-    executeXml
+    executeXml,
+    executeXmlAndClean
 } from "./execute/index.js";
 

@@ -2,7 +2,7 @@ import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
 
-import { executeXml } from "./core/index.js";
+import { executeXml, executeXmlAndClean } from "./core/index.js";
 import { buildXml } from "./core/buildXml.js";
 import bodyJson from "./body.json" with {type: "json"};
 
@@ -25,4 +25,20 @@ const get = (options = {}) => {
     return executeXml(xml, options);
 };
 
-export default get;
+const clean = (options = {}) => {
+    const company = options.company;
+    const jsonId = options.jsonId;
+
+    const { tdlMessage } = bodyJson[jsonId];
+
+    const staticVariables = `<SVCURRENTCOMPANY>${company}</SVCURRENTCOMPANY>`;
+
+    const xml = buildXml(body, {
+        staticVariables,
+        tdlMessage
+    });
+
+    return executeXmlAndClean(xml, options);
+};
+
+export { get, clean };

@@ -1,4 +1,5 @@
 // src/v4/core/execute/executeXml.js
+import { cleanTallyResponse } from "../cleanTallyResponse.js";
 import { sendXml } from "../transport/http.js";
 import { xmlToJson } from "../response/xmlToJson.js";
 
@@ -10,5 +11,5 @@ export const executeXml = async (
 
     const json = xmlToJson(rawXml);
 
-    return json;
+    return cleanTallyResponse(json);
 };
