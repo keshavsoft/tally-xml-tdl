@@ -3,7 +3,7 @@ import { cleanTallyResponse } from "../cleanTallyResponse.js";
 import { sendXml } from "../transport/http.js";
 import { xmlToJson } from "../response/xmlToJson.js";
 
-export const executeXml = async (
+export const executeXmlAndClean = async (
     xml,
     { url = "http://localhost:9000" } = {}
 ) => {
