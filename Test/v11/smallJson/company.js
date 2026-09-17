@@ -1,4 +1,4 @@
-import { company } from "../../src/v4/index.js";
+import { company } from "../../../src/v4/index.js";
 import { saveOutput } from "./common/index.js";
 
 const data = await company();

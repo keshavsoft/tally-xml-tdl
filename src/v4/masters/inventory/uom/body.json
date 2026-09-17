@@ -2,6 +2,9 @@
   "name": "KeshavUnits",
   "type": "Unit",
   "fields": [
+    "Name"
+  ],
+  "fields1": [
     "Name",
     "OriginalName",
     "IsSimpleUnit",
