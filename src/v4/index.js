@@ -5,6 +5,7 @@ export * as core from "./core/index.js";
 export * as masters from "./masters/index.js";
 export * as transactions from "./transactions/index.js";
 export * as reports from "./reports/index.js";
+export * as importData from "./import/index.js";
 
 export { default as company } from "./company/index.js";
 export * as companyModule from "./company/index.js";

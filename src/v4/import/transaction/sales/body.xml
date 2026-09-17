@@ -1,0 +1,50 @@
+<ENVELOPE>
+    <HEADER>
+        <TALLYREQUEST>Import Data</TALLYREQUEST>
+    </HEADER>
+
+    <BODY>
+        <IMPORTDATA>
+            <REQUESTDESC>
+                <REPORTNAME>Vouchers</REPORTNAME>
+                <STATICVARIABLES>
+                    <SVCURRENTCOMPANY>Mani9</SVCURRENTCOMPANY>
+                </STATICVARIABLES>
+            </REQUESTDESC>
+
+            <REQUESTDATA>
+                <TALLYMESSAGE xmlns:UDF="TallyUDF">
+
+                    <VOUCHER
+                        VCHTYPE="Sales"
+                        ACTION="Create"
+                        OBJVIEW="Accounting Voucher View">
+
+                        <DATE>20260917</DATE>
+                        <VOUCHERTYPENAME>Sales</VOUCHERTYPENAME>
+
+                        <PARTYLEDGERNAME>Cash</PARTYLEDGERNAME>
+
+                        <ALLLEDGERENTRIES.LIST>
+
+                            <LEDGERNAME>Cash</LEDGERNAME>
+                            <ISDEEMEDPOSITIVE>Yes</ISDEEMEDPOSITIVE>
+                            <AMOUNT>-1000.00</AMOUNT>
+
+                        </ALLLEDGERENTRIES.LIST>
+
+                        <ALLLEDGERENTRIES.LIST>
+
+                            <LEDGERNAME>Sales</LEDGERNAME>
+                            <ISDEEMEDPOSITIVE>No</ISDEEMEDPOSITIVE>
+                            <AMOUNT>1000.00</AMOUNT>
+
+                        </ALLLEDGERENTRIES.LIST>
+
+                    </VOUCHER>
+
+                </TALLYMESSAGE>
+            </REQUESTDATA>
+        </IMPORTDATA>
+    </BODY>
+</ENVELOPE>
