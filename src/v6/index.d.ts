@@ -6,5 +6,3 @@ export interface V6Options {
 
 export function get<T = any>(options?: V6Options): Promise<T>;
 export function clean<T = any>(options?: V6Options): Promise<T>;
-
-export * as v6 from "./src/v6/index.js";
