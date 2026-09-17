@@ -8,5 +8,10 @@
     "staticVariables": "<SVEXPORTFORMAT>$$SysName:XML</SVEXPORTFORMAT>",
     "tdlMessage": "<COLLECTION NAME=\"KeshavStockItems\"><TYPE>StockItem</TYPE><FETCH>$$Alias:Name</FETCH></COLLECTION>",
     "tdlId": "KeshavStockItems"
+  },
+  "stockItems1": {
+    "staticVariables": "<SVEXPORTFORMAT>$$SysName:XML</SVEXPORTFORMAT>",
+    "tdlMessage": "<COLLECTION NAME=\"KeshavStockItems\"><TYPE>StockItem</TYPE><FETCH>$$Alias:Name</FETCH><FETCH>BaseUnits</FETCH></COLLECTION>",
+    "tdlId": "KeshavStockItems"
   }
 }
