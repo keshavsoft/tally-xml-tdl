@@ -3,21 +3,18 @@
         <VERSION>1</VERSION>
         <TALLYREQUEST>Export</TALLYREQUEST>
         <TYPE>Collection</TYPE>
-        <ID>KeshavUnits</ID>
+        <ID>{{TDLID}}</ID>
     </HEADER>
 
     <BODY>
         <DESC>
             <STATICVARIABLES>
-                <SVEXPORTFORMAT>$$SysName:XML</SVEXPORTFORMAT>
+                {{STATICVARIABLES}}
             </STATICVARIABLES>
 
             <TDL>
                 <TDLMESSAGE>
-                    <COLLECTION NAME="KeshavUnits">
-                        <TYPE>Unit</TYPE>
-                        <FETCH>NAME</FETCH>
-                    </COLLECTION>
+                    {{TDLMESSAGE}}
                 </TDLMESSAGE>
             </TDL>
         </DESC>

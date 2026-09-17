@@ -1,5 +1,6 @@
 export { default as godown, body as godownBody, get as getGodown } from "./godown/index.js";
 export { default as stockCategory, body as stockCategoryBody, get as getStockCategory } from "./stockCategory/index.js";
+export { default as uom } from "./uom/index.js";
 export { default as stockItems, body as stockItemsBody, get as getStockItems } from "./stockItems/index.js";
 export { default as batch, body as batchBody, get as getBatch } from "./batch/index.js";
 
