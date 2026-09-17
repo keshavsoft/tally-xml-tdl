@@ -14,5 +14,13 @@
   "ledgerNames": {
     "staticVariables": "<SVEXPORTFORMAT>$$SysName:XML</SVEXPORTFORMAT>",
     "tdlMessage": "<TYPE>Ledger</TYPE><FETCH>$$Alias:Name</FETCH>"
+  },
+  "stockGroups": {
+    "staticVariables": "<SVEXPORTFORMAT>$$SysName:XML</SVEXPORTFORMAT>",
+    "tdlMessage": "<TYPE>StockGroup</TYPE><FETCH>$$Alias:Name</FETCH>"
+  },
+  "stockGroupsAndParent": {
+    "staticVariables": "<SVEXPORTFORMAT>$$SysName:XML</SVEXPORTFORMAT>",
+    "tdlMessage": "<TYPE>StockGroup</TYPE><FETCH>$$Alias:Name</FETCH><FETCH>Parent</FETCH>"
   }
 }
