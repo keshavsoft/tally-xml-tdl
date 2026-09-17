@@ -1,59 +1,38 @@
 # CHANGELOG
 
-All notable changes to this project will be documented in this file.
+All notable changes to `tally-xml-tdl` are documented in this file.
 
 ---
 
-## [1.7.1] - 2026-04-18
+## [1.6.1] - 2026-09-17
 
 ### Added
+- **v6 Engine**: New template-based XML generation architecture using `body.xml` and `body.json`.
+- **`clean()` Method**: Strips XML metadata, attributes (`@_RESERVEDNAME`), flattens nested `#text` objects, and returns sanitized arrays/objects.
+- **`get()` Method**: Provides full fidelity XML-to-JSON parsing when raw envelope structures are needed.
+- **Pre-configured Queries**:
+  - `uom` (Units of Measure)
+  - `stockItems` (Stock Item names and aliases)
+  - `stockItemsWithBaseUnits` (Stock Items with base units)
+  - `ledgerNames` (Ledger names)
+- **Subpath Export**: Direct access via `tally-xml-tdl/v6` in addition to root export.
+- **TypeScript Support**: Full `.d.ts` type declarations for `get`, `clean`, and `V6Options`.
 
-* Initial release of kschema
-* Config loader (`loadConfig`, `getConfig`)
-* File-based JSON storage
-* Schema-driven table handling
-* Primary key detection (`getPrimaryKey`)
-* Auto-increment primary key (`attachPrimaryKey`)
-* CRUD operations:
+### Changed
+- Streamlined package distribution to package only `v6` core files, reducing unpacked package size to ~11 kB.
+- Simplified dependencies to rely on `fast-xml-parser`.
 
-  * insert
-  * insertStrict
-  * get
-  * findByPk
-  * update
-  * delete
-
-### Notes
-
-* Primary key is dynamically resolved from schema
-* Data stored as JSON files
-* Minimal, dependency-free design
-
-## [1.7.3] - 2026-04-19
-
-### filer and find columns perfect
-
-## [1.2.3] - 2026-05-05
-
-### tally import voucher started
+---
 
 ## [1.4.1] - 2026-05-05
 
-### tally import voucher perfect from pkg
+### Added
+- Voucher imports and XML body generation.
+- Support for Day Book and GST collection exports.
 
-## [1.4.2] - 2026-05-14
+---
 
-### tally import voucher perfect with day book and gst1 also,
-test.js added in route for test from Data folder
+## [1.0.0] - 2026-04-18
 
-## [1.7.2] - 2026-05-14
-
-### tested from ordermanv11 also with pkg
-
-## [1.8.1] - 2026-06-10
-
-### stockitems send company input
-
-## [1.9.2] - 2026-06-16
-
-### stockitems send company input test and inex changed
+### Added
+- Initial release of `tally-xml-tdl` with base XML collection requests and HTTP transport.
