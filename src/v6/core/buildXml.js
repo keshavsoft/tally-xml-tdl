@@ -1,5 +1,5 @@
 export const buildXml = (body, {
-    staticVariables,
+    staticVariables = "",
     tdlMessage
 }) => {
 

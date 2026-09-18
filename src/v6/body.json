@@ -1,4 +1,8 @@
 {
+  "company": {
+    "staticVariables": "<SVEXPORTFORMAT>$$SysName:XML</SVEXPORTFORMAT>",
+    "tdlMessage": "<TYPE>Company</TYPE><FETCH>$$Alias:Name</FETCH>"
+  },
   "uom": {
     "staticVariables": "<SVEXPORTFORMAT>$$SysName:XML</SVEXPORTFORMAT>",
     "tdlMessage": "<TYPE>Unit</TYPE><FETCH>$$Alias:Name</FETCH>"

@@ -41,4 +41,21 @@ const clean = (options = {}) => {
     return executeXmlAndClean(xml, options);
 };
 
-export { get, clean };
+const company = async () => {
+    const jsonId = "company";
+
+    const { tdlMessage } = bodyJson[jsonId];
+
+    const xml = buildXml(body, {
+        tdlMessage
+    });
+
+    return executeXmlAndClean(xml);
+
+    const fromExecuteXml = await executeXml(xml);
+    console.log("fclsromExecuteXml : ", fromExecuteXml.ENVELOPE.BODY.DATA.COLLECTION.COMPANY);
+
+    return fromExecuteXml.ENVELOPE.BODY.DATA.COLLECTION.COMPANY["@_NAME"];
+};
+
+export { get, clean, company };
