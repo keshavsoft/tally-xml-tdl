@@ -18,9 +18,11 @@
             <TYPE>Vouchers:VoucherType</TYPE>
             <CHILDOF>$$VchTypePurchase</CHILDOF>
             <BELONGSTO>Yes</BELONGSTO>
+            <FILTER>DateFilter</FILTER>
             <FETCH>AllInventoryEntries</FETCH>
             <FETCH>Date</FETCH>
           </COLLECTION>
+          <SYSTEM TYPE="Formulae" NAME="DateFilter">$Date &gt;= ##SVFROMDATE AND $Date &lt;= ##SVTODATE</SYSTEM>
         </TDLMESSAGE>
       </TDL>
     </DESC>

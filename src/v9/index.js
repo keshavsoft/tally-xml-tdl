@@ -79,4 +79,14 @@ const purchaseFromXml = async () => {
     return retXml;
 };
 
-export { get, clean, company, purchase, purchaseFromXml };
+const daybook = async () => {
+
+    const xml = fs.readFileSync(path.join(__dirname, "daybook/body.xml"), "utf8");
+    console.log("xml : ", xml);
+    const retXml = await executeXmlFunc(xml);
+    console.log("retXml : ", retXml);
+
+    return retXml;
+};
+
+export { get, clean, company, purchase, purchaseFromXml, daybook };

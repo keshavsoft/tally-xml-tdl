@@ -1,3 +1,4 @@
+const showLog = true;
 const handleRows = (inRows) => {
     let localRows = inRows;
 
@@ -48,24 +49,6 @@ const handleRows = (inRows) => {
     return newRows;
 };
 
-const cleanTallyResponse_old = (json) => {
-    // console.log("json : ", json);
-
-    let collection = json?.ENVELOPE?.BODY?.DATA?.COLLECTION;
-    // console.log("collection : ", collection);
-
-    const [key, rows] = Object.entries(collection).find(
-        ([key, value]) =>
-            !key.startsWith("@") &&
-            Array.isArray(value)
-    ) ?? [];
-
-    const neededArray = collection[key];
-    // console.log("11111 : ", neededArray);
-
-    return neededArray;
-};
-
 const changeTypeString = (inArray) => {
     const newArray = inArray.map(row => {
         const result = {};
@@ -90,76 +73,6 @@ const changeTypeString = (inArray) => {
     return newArray;
 };
 
-const cleanTallyResponse1 = (json) => {
-    // console.log("json : ", json);
-
-    let collection = json?.ENVELOPE?.BODY?.DATA?.COLLECTION;
-    // console.log("collection : ", collection);
-
-    const [key, rows] = Object.entries(collection).find(
-        ([key, value]) =>
-            !key.startsWith("@") &&
-            Array.isArray(value)
-    ) ?? [];
-
-    const neededArray = collection[key];
-    // console.log("11111 : ", neededArray);
-
-    if (!Array.isArray(neededArray)) {
-        return neededArray;
-    }
-
-    return neededArray.map(row => {
-        const result = {};
-
-        for (const [key, value] of Object.entries(row)) {
-            if (
-                value &&
-                typeof value === "object" &&
-                value["@_TYPE"] === "String" &&
-                "#text" in value
-            ) {
-                result[key] = value["#text"];
-                continue;
-            }
-
-            result[key] = value;
-        }
-
-        return result;
-    });
-};
-
-const cleanTallyResponse2 = (json) => {
-    // console.log("json : ", json);
-
-    let collection = json?.ENVELOPE?.BODY?.DATA?.COLLECTION;
-    console.log("collection : ", collection);
-
-    if (!Array.isArray(collection)) {
-        collection = [collection];
-    };
-
-    console.log("aaaaaa : ", collection);
-
-    const [key, rows] = Object.entries(collection).find(
-        ([key, value]) =>
-            !key.startsWith("@") &&
-            Array.isArray(value)
-    ) ?? [];
-
-    console.log("key : ", key);
-
-    const neededArray = collection[key];
-    console.log("11111 : ", neededArray);
-
-    if (!Array.isArray(neededArray)) {
-        return neededArray;
-    }
-
-    return changeTypeString(neededArray);
-};
-
 const pullKey = (inCollection) => {
     let collection = inCollection;
     console.log("collection : ", collection);
@@ -176,27 +89,15 @@ const pullKey = (inCollection) => {
 export const cleanTallyResponse = (json) => {
     console.log("json : ", json);
 
-    let collection = json?.ENVELOPE?.BODY?.DATA?.COLLECTION;
-    // console.log("collection : ", collection);
+    const data = json?.ENVELOPE?.BODY?.DATA;
+    if (showLog) console.log("data : ", data);
+
+    let collection = data?.COLLECTION;
+    if (showLog) console.log("collection1 : ", collection);
 
     const key = pullKey(collection);
 
-    // if (!Array.isArray(collection)) {
-    //     collection = [collection];
-    // };
-
-    // // console.log("aaaaaa : ", collection);
-
-    // const [key, rows] = Object.entries(collection).find(
-    //     ([key, value]) =>
-    //         !key.startsWith("@") &&
-    //         Array.isArray(value)
-    // ) ?? [];
-
-    // console.log("key : ", key);
-
     const neededArray = collection[key];
-    // console.log("11111 : ", neededArray);
 
     if (!Array.isArray(neededArray)) {
         return neededArray;

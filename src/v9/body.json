@@ -73,7 +73,6 @@
   },
   "purchases": {
     "staticVariables": "<SVEXPORTFORMAT>$$SysName:XML</SVEXPORTFORMAT><SVFROMDATE TYPE=\"Date\">4-Sep-2026</SVFROMDATE><SVTODATE TYPE=\"Date\">4-Sep-2026</SVTODATE>",
-    "tdlMessage1": "<COLLECTION NAME=\"KeshavPurchaseInventory\"><TYPE>Vouchers:VoucherType</TYPE><CHILDOF>$$VchTypePurchase</CHILDOF><BELONGSTO>Yes</BELONGSTO><FETCH>Date, VoucherNumber, VoucherTypeName, PartyLedgerName, AllInventoryEntries</FETCH></COLLECTION>",
     "tdlMessage": "<TYPE>Vouchers:VoucherType</TYPE><CHILDOF>$$VchTypePurchase</CHILDOF><BELONGSTO>Yes</BELONGSTO><FETCH>AllInventoryEntries</FETCH><FETCH>Date</FETCH>"
   }
 }
