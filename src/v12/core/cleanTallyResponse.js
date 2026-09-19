@@ -1,4 +1,4 @@
-import changeTypeString from "./changeTypeString.js";
+import changeTypeString from "./changeType/v2/changeTypeString.js";
 
 const showLog = false;
 
@@ -34,7 +34,7 @@ const cleanTallyResponse = (json) => {
     }
 
     const changedArray = changeTypeString(neededArray);
-    console.log("changedArray=-------- : ", changedArray[1].DATE);
+    console.log("changedArray=-------- : ", changedArray[1]["ALLINVENTORYENTRIES.LIST"][0]["BATCHALLOCATIONS.LIST"]);
 
     return changedArray;
 };
