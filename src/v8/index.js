@@ -41,10 +41,11 @@ const clean = (options = {}) => {
     return executeXmlAndClean(xml, options);
 };
 
-const company = async () => {
+const company = async (showLog = false) => {
     const jsonId = "company";
 
     const { tdlMessage } = bodyJson[jsonId];
+    if (showLog) console.log("tdlMessage : ", tdlMessage);
 
     const xml = buildXml(body, {
         tdlMessage
