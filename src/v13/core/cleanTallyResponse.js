@@ -1,6 +1,6 @@
 import changeTypeString from "./changeType/v3/changeTypeString.js";
 
-const showLog = false;
+const showLog = true;
 
 const pullKey = (inCollection) => {
     let collection = inCollection;
@@ -28,19 +28,28 @@ const cleanTallyResponse = (json) => {
     let collection = data?.COLLECTION;
     if (showLog) console.log("collection1 : ", collection);
 
-    const { key, rows } = pullKey(collection);
+    const originalKeys = Object.keys(collection);
 
+    if (originalKeys.length === 1) {
+        collection[originalKeys[0]] = [collection[originalKeys[0]]];
+    };
+
+    if (showLog) console.log("originalKeys : ", originalKeys);
+
+    const { key, rows } = pullKey(collection);
+    if (showLog) console.log("collection1 : ", key, rows);
     const neededArray = rows;
     // console.log("neededArray : ", neededArray[1]);
 
     if (!Array.isArray(neededArray)) {
         return neededArray;
-    }
+    };
 
     const changedArray = changeTypeString(neededArray);
+
     if (changedArray?.[1]?.["ALLINVENTORYENTRIES.LIST"]?.[0]?.["BATCHALLOCATIONS.LIST"]) {
         console.log("changedArray=-------- : ", changedArray[1]["ALLINVENTORYENTRIES.LIST"][0]["BATCHALLOCATIONS.LIST"]);
-    }
+    };
 
     return changedArray;
 };

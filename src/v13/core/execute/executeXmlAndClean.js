@@ -1,5 +1,5 @@
-// src/v4/core/execute/executeXml.js
-import { cleanTallyResponse } from "../cleanTallyResponse.js";
+// src/v13/core/execute/executeXml.js
+import cleanTallyResponse from "../../core/cleanTallyResponse.js";
 import { sendXml } from "../transport/http.js";
 import { xmlToJson } from "../response/xmlToJson.js";
 
