@@ -74,10 +74,9 @@ const changeTypeString = (inArray) => {
             if (
                 value &&
                 typeof value === "object" &&
-                value["@_TYPE"] === "String" &&
-                "#text" in value
+                "@_TYPE" in value
             ) {
-                result[key] = value["#text"];
+                result[key] = "#text" in value ? String(value["#text"]) : "";
                 continue;
             }
 
