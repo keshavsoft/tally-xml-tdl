@@ -1,6 +1,6 @@
 import changeTypeString from "./changeType/v3/changeTypeString.js";
 
-const showLog = true;
+const showLog = false;
 
 const pullKey = (inCollection) => {
     let collection = inCollection;

@@ -1,32 +1,21 @@
 {
   "name": "tally-xml-tdl",
-  "version": "1.13.3",
+  "version": "1.15.1",
   "description": "Simple, clean TDL and XML extraction and manipulation tools for Tally",
   "type": "module",
-  "main": "src/v13/main.js",
-  "module": "./src/v13/main.js",
+  "main": "src/v15/main.js",
+  "module": "./src/v15/main.js",
   "types": "index.d.ts",
   "sideEffects": false,
   "exports": {
     ".": {
       "types": "./index.d.ts",
-      "import": "./src/v13/main.js",
-      "default": "./src/v13/main.js"
-    },
-    "./v13": {
-      "types": "./src/v13/main.d.ts",
-      "import": "./src/v13/main.js",
-      "default": "./src/v13/main.js"
-    },
-    "./v6": {
-      "types": "./src/v6/index.d.ts",
-      "import": "./src/v6/index.js",
-      "default": "./src/v6/index.js"
+      "import": "./src/v15/main.js",
+      "default": "./src/v15/main.js"
     }
   },
   "files": [
-    "src/v13",
-    "src/v6",
+    "src/v15",
     "src/index.js",
     "index.js",
     "index.d.ts",

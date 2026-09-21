@@ -11,6 +11,7 @@ const body = fs.readFileSync(path.join(__dirname, "body.xml"), "utf8");
 
 const startFunc = async (showLog = false) => {
     const jsonId = "company";
+    // console.log("------------ : ", jsonId);
 
     const { tdlMessage } = bodyJson[jsonId];
     if (showLog) console.log("tdlMessage : ", tdlMessage);
@@ -18,11 +19,12 @@ const startFunc = async (showLog = false) => {
     const xml = buildXml(body, {
         tdlMessage
     });
+
     if (showLog) console.log("xml : ", xml);
+
     const jsonToReturn = await executeXmlAndClean(xml);
+
     if (showLog) console.log("jsonToReturn : ", jsonToReturn);
-    // const firstRow = jsonToReturn[0];
-    // const { "@_NAME": name, "@_RESERVEDNAME": reservedName } = firstRow;
 
     return jsonToReturn;
 };
