@@ -3,14 +3,6 @@
     "staticVariables": "<SVEXPORTFORMAT>$$SysName:XML</SVEXPORTFORMAT>",
     "tdlMessage": "<TYPE>Company</TYPE><FETCH>$$Alias:Name</FETCH>"
   },
-  "allPurchases": {
-    "staticVariables": "<SVEXPORTFORMAT>$$SysName:XML</SVEXPORTFORMAT>",
-    "tdlMessage": "<TYPE>Vouchers</TYPE><FETCH>Date</FETCH>"
-  },
-  "purchasesPeriod": {
-    "staticVariables": "<SVFROMDATE TYPE=\"Date\">1-Apr-2026</SVFROMDATE><SVTODATE TYPE=\"Date\">30-Apr-2026</SVTODATE>",
-    "tdlMessage": "<TYPE>Vouchers</TYPE><FETCH>Date</FETCH>"
-  },
   "uom": {
     "staticVariables": "<SVEXPORTFORMAT>$$SysName:XML</SVEXPORTFORMAT>",
     "tdlMessage": "<TYPE>Unit</TYPE><FETCH>$$Alias:Name</FETCH>"
@@ -79,7 +71,7 @@
     "staticVariables": "<SVEXPORTFORMAT>$$SysName:XML</SVEXPORTFORMAT>",
     "tdlMessage": "<COLLECTION NAME=\"KeshavPurchaseInventory\"><TYPE>Vouchers:VoucherType</TYPE><CHILDOF>$$VchTypePurchase</CHILDOF><BELONGSTO>Yes</BELONGSTO><FETCH>Date, VoucherNumber, VoucherTypeName, PartyLedgerName, AllInventoryEntries</FETCH></COLLECTION>"
   },
-  "purchases10": {
+  "purchases": {
     "staticVariables": "<SVEXPORTFORMAT>$$SysName:XML</SVEXPORTFORMAT><SVFROMDATE TYPE=\"Date\">4-Sep-2026</SVFROMDATE><SVTODATE TYPE=\"Date\">4-Sep-2026</SVTODATE>",
     "tdlMessage": "<TYPE>Vouchers:VoucherType</TYPE><CHILDOF>$$VchTypePurchase</CHILDOF><BELONGSTO>Yes</BELONGSTO><FETCH>AllInventoryEntries</FETCH><FETCH>Date</FETCH>"
   }
