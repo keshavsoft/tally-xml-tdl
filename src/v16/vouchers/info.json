@@ -8,7 +8,7 @@
     "tdlMessage": "<TYPE>Vouchers</TYPE><FETCH>Date</FETCH>"
   },
   "purchasesPeriod": {
-    "tdlMessage": "<TYPE>Vouchers</TYPE><FETCH>Date</FETCH>"
+    "tdlMessage": "<TYPE>Vouchers</TYPE><FETCH>AllInventoryEntries</FETCH>"
   },
   "uom": {
     "staticVariables": "<SVEXPORTFORMAT>$$SysName:XML</SVEXPORTFORMAT>",
