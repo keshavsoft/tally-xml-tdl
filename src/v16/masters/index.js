@@ -2,8 +2,8 @@ import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
 
-import { executeXml, executeXmlAndClean } from "./core/index.js";
-import { buildXml } from "./core/buildXml.js";
+import { executeXml, executeXmlAndClean } from "../core/index.js";
+import { buildXml } from "../core/buildXml.js";
 import bodyJson from "./masters.json" with {type: "json"};
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -31,7 +31,7 @@ const clean = (company, jsonId) => {
         staticVariables: companyFilter,
         tdlMessage
     });
-    console.log("xml : ", staticVariables, xml);
+    // console.log("xml : ", staticVariables, xml);
     return executeXmlAndClean(xml);
 };
 
