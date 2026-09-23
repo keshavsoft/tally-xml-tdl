@@ -9,7 +9,7 @@ const startFunc = async (
     const rawXml = await sendXml({ xml, url });
 
     const json = xmlToJson(rawXml);
-
+// console.log("json :", json);
     return json;
 };
 
