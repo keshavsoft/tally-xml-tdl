@@ -1,0 +1,29 @@
+import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
+
+import { executeXml } from "../core/index.js";
+import { buildXml } from "../core/buildXml.js";
+import tdlJson from "./tdl.json" with { type: "json" };
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const body = fs.readFileSync(path.join(__dirname, "body.xml"), "utf8");
+
+const startFunc = async (showLog = false) => {
+    const { tdlMessage } = tdlJson;
+    if (showLog) console.log("tdlMessage : ", tdlMessage);
+
+    const xml = buildXml(body, {
+        tdlMessage
+    });
+
+    if (showLog) console.log("xml : ", xml);
+
+    const jsonToReturn = await executeXml(xml);
+
+    if (showLog) console.log("jsonToReturn : ", jsonToReturn);
+
+    return jsonToReturn;
+};
+
+export default startFunc;
