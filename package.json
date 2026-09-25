@@ -17,6 +17,7 @@
   "files": [
     "src/v16",
     "src/v17",
+    "src/v18",
     "src/index.js",
     "index.js",
     "index.d.ts",
