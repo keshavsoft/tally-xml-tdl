@@ -16,6 +16,7 @@
   },
   "files": [
     "src/v16",
+    "src/v17",
     "src/index.js",
     "index.js",
     "index.d.ts",
