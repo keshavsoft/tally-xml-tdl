@@ -1,4 +1,0 @@
-{
-  "purchases": "<TYPE>Vouchers:VoucherType</TYPE><CHILDOF>$$$$VchTypePurchase</CHILDOF><BELONGSTO>Yes</BELONGSTO><FETCH>AllInventoryEntries</FETCH><FETCH>Date</FETCH>",
-  "sales": "<TYPE>Vouchers:VoucherType</TYPE><CHILDOF>$$$$VchTypeSales</CHILDOF><BELONGSTO>Yes</BELONGSTO><FETCH>AllInventoryEntries</FETCH><FETCH>Date</FETCH>"
-}
