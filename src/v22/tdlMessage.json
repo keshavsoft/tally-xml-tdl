@@ -1,8 +1,8 @@
 {
   "company": "<TYPE>Company</TYPE><FETCH>$$Alias:Name</FETCH>",
   "vouchers": {
-    "purchases": "<TYPE>Vouchers:VoucherType</TYPE><CHILDOF>$$$$VchTypePurchase</CHILDOF><BELONGSTO>Yes</BELONGSTO><FETCH>AllInventoryEntries</FETCH><FETCH>Date</FETCH>",
-    "sales": "<TYPE>Vouchers:VoucherType</TYPE><CHILDOF>$$$$VchTypeSales</CHILDOF><BELONGSTO>Yes</BELONGSTO><FETCH>AllInventoryEntries</FETCH><FETCH>Date</FETCH>"
+    "purchases": "<TYPE>Vouchers:VoucherType</TYPE><CHILDOF>$$$$VchTypePurchase</CHILDOF><BELONGSTO>Yes</BELONGSTO><FETCH>Date, VoucherNumber, VoucherTypeName, PartyLedgerName, Amount, AllInventoryEntries</FETCH>",
+    "sales": "<TYPE>Vouchers:VoucherType</TYPE><CHILDOF>$$$$VchTypeSales</CHILDOF><BELONGSTO>Yes</BELONGSTO><FETCH>Date, VoucherNumber, VoucherTypeName, PartyLedgerName, Amount, AllInventoryEntries</FETCH>"
   },
   "masters": {
     "Unit": {
