@@ -46,7 +46,17 @@ const createMasterApi = (tdlMessageString) => {
         return await executeXml(xml);
     };
 
-    return { all };
+    const api = { all };
+
+    if (tdlMessageString && typeof tdlMessageString === "object") {
+        for (const [key, msg] of Object.entries(tdlMessageString)) {
+            const fn = async (company) => all(company, key);
+            fn.all = fn;
+            api[key] = fn;
+        }
+    }
+
+    return api;
 };
 
 const createCompanyApi = (tdlMessageString) => {

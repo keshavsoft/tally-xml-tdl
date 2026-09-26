@@ -1,7 +1,30 @@
 import tdlMessage from "../tdlMessage.json" with { type: "json" };
 import { createMasterApi } from "../createApi.js";
 
-const { all } = createMasterApi(tdlMessage.masters);
+const masterApi = createMasterApi(tdlMessage.masters);
 
-export { all };
-export default { all };
+const {
+    all,
+    uom,
+    stockItems,
+    stockItemsWithBaseUnits,
+    ledgerNames,
+    ledgerNamesWithDetails,
+    ledgerNamesMoreDetails,
+    stockGroups,
+    stockGroupsAndParent
+} = masterApi;
+
+export {
+    all,
+    uom,
+    stockItems,
+    stockItemsWithBaseUnits,
+    ledgerNames,
+    ledgerNamesWithDetails,
+    ledgerNamesMoreDetails,
+    stockGroups,
+    stockGroupsAndParent
+};
+
+export default masterApi;
