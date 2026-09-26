@@ -5,14 +5,27 @@
     "sales": "<TYPE>Vouchers:VoucherType</TYPE><CHILDOF>$$$$VchTypeSales</CHILDOF><BELONGSTO>Yes</BELONGSTO><FETCH>AllInventoryEntries</FETCH><FETCH>Date</FETCH>"
   },
   "masters": {
-    "uom": "<TYPE>Unit</TYPE><FETCH>$$Alias:Name</FETCH>",
-    "stockItems": "<TYPE>StockItem</TYPE><FETCH>$$Alias:Name</FETCH>",
-    "stockItemsWithBaseUnits": "<TYPE>StockItem</TYPE><FETCH>$$Alias:Name</FETCH><FETCH>BaseUnits</FETCH>",
-    "ledgerNames": "<TYPE>Ledger</TYPE><FETCH>$$Alias:Name</FETCH>",
-    "ledgerNamesWithDetails": "<TYPE>Ledger</TYPE><FETCH>$$Alias:Name</FETCH><FETCH>GSTRegistrationType</FETCH><FETCH>GSTIN</FETCH>",
-    "ledgerNamesMoreDetails": "<TYPE>Ledger</TYPE><FETCH>$$Alias:Name</FETCH><FETCH>LEDGSTREGDETAILS.LIST</FETCH>",
-    "stockGroups": "<TYPE>StockGroup</TYPE><FETCH>$$Alias:Name</FETCH>",
-    "stockGroupsAndParent": "<TYPE>StockGroup</TYPE><FETCH>$$Alias:Name</FETCH><FETCH>Parent</FETCH>",
-    "stockItemsWithBatches": "<TYPE>StockItem</TYPE><FETCH>$$Alias:Name</FETCH><FETCH>BaseUnits</FETCH><FETCH>BatchAllocations.*</FETCH>"
+    "Unit": {
+      "all": "<TYPE>Unit</TYPE><FETCH>$$Alias:Name</FETCH>",
+      "names": "<TYPE>Unit</TYPE><FETCH>$$Alias:Name</FETCH>"
+    },
+    "StockItem": {
+      "all": "<TYPE>StockItem</TYPE><FETCH>$$Alias:Name</FETCH>",
+      "names": "<TYPE>StockItem</TYPE><FETCH>$$Alias:Name</FETCH>",
+      "withBaseUnits": "<TYPE>StockItem</TYPE><FETCH>$$Alias:Name</FETCH><FETCH>BaseUnits</FETCH>",
+      "withBatches": "<TYPE>StockItem</TYPE><FETCH>$$Alias:Name</FETCH><FETCH>BaseUnits</FETCH><FETCH>BatchAllocations.*</FETCH>"
+    },
+    "Ledger": {
+      "all": "<TYPE>Ledger</TYPE><FETCH>$$Alias:Name</FETCH>",
+      "names": "<TYPE>Ledger</TYPE><FETCH>$$Alias:Name</FETCH>",
+      "withDetails": "<TYPE>Ledger</TYPE><FETCH>$$Alias:Name</FETCH><FETCH>GSTRegistrationType</FETCH><FETCH>GSTIN</FETCH>",
+      "moreDetails": "<TYPE>Ledger</TYPE><FETCH>$$Alias:Name</FETCH><FETCH>LEDGSTREGDETAILS.LIST</FETCH>",
+      "withGstDetails": "<TYPE>Ledger</TYPE><FETCH>$$Alias:Name</FETCH><FETCH>LEDGSTREGDETAILS.LIST</FETCH>"
+    },
+    "StockGroup": {
+      "all": "<TYPE>StockGroup</TYPE><FETCH>$$Alias:Name</FETCH>",
+      "names": "<TYPE>StockGroup</TYPE><FETCH>$$Alias:Name</FETCH>",
+      "withParent": "<TYPE>StockGroup</TYPE><FETCH>$$Alias:Name</FETCH><FETCH>Parent</FETCH>"
+    }
   }
 }

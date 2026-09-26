@@ -34,29 +34,42 @@ const createVoucherApi = (tdlMessageString) => {
     return { period, all };
 };
 
-const createMasterApi = (tdlMessageString) => {
-    const all = async (company, jsonId) => {
-        const staticVariables = `<SVCURRENTCOMPANY>${company}</SVCURRENTCOMPANY>`;
+const createMasterApi = (arg) => {
+    const inTdlMessage = (arg && typeof arg === "object" && "inTdlMessage" in arg) ? arg.inTdlMessage : arg;
+    const localTdlMessage = inTdlMessage;
+
+    const all = async (company, jsonId = "all") => {
+        const localCompany = company;
+        const localJsonId = jsonId;
+        const staticVariables = `<SVCURRENTCOMPANY>${localCompany}</SVCURRENTCOMPANY>`;
+
+        let messageTemplate;
+        if (typeof localTdlMessage === "string") {
+            messageTemplate = localTdlMessage;
+        } else if (localTdlMessage && typeof localTdlMessage === "object") {
+            messageTemplate = localTdlMessage[localJsonId] || localTdlMessage.all || localTdlMessage.names || Object.values(localTdlMessage)[0];
+        }
 
         const xml = buildXml(body, {
             staticVariables,
-            tdlMessage: tdlMessageString[jsonId]
+            tdlMessage: messageTemplate
         });
 
         return await executeXml(xml);
     };
 
-    const api = { all };
+    const mainFn = async (company) => all(company, "all");
+    mainFn.all = (company, jsonId) => (jsonId ? all(company, jsonId) : all(company, "all"));
 
-    if (tdlMessageString && typeof tdlMessageString === "object") {
-        for (const [key, msg] of Object.entries(tdlMessageString)) {
+    if (localTdlMessage && typeof localTdlMessage === "object") {
+        for (const [key, msg] of Object.entries(localTdlMessage)) {
             const fn = async (company) => all(company, key);
             fn.all = fn;
-            api[key] = fn;
+            mainFn[key] = fn;
         }
     }
 
-    return api;
+    return mainFn;
 };
 
 const createCompanyApi = (tdlMessageString) => {

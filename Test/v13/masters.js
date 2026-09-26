@@ -25,7 +25,7 @@ function copyToClipboard(text) {
 // // Example usage
 // copyToClipboard('Hello directly from native Node.js!');
 
-const uom = await masters.clean("mani9", "stockItemsWithBaseUnits");
+const uom = await masters.StockItem.withBaseUnits("mani9");
 console.log("company", uom);
 
 copyToClipboard(JSON.stringify(uom));

@@ -1,4 +1,0 @@
-import { masters } from "../../../src/index.js";
-
-const uom = await masters.all("mani9", "uom");
-console.log("company", uom);
