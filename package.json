@@ -30,6 +30,8 @@
     "url": "https://github.com/keshavsoft/tally-xml-tdl/issues"
   },
   "dependencies": {
-    "fast-xml-parser": "^5.11.1"
+    "@keshavsoft/api-tree": "^1.0.0",
+    "fast-xml-parser": "^5.11.1",
+    "tally-spec": "^1.0.0"
   }
 }

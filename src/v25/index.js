@@ -1,12 +1,8 @@
-import source from "./source.json" with { type: "json" };
-import apiPaths from "./api.json" with { type: "json" };
+import apiTree from "@keshavsoft/api-tree";
+import { source, apiPaths } from "tally-spec";
 
-import createRoute from "./engine/route/index.js";
 import execute from "./engine/execution/index.js";
 
-const app = createRoute({
-    inApiPaths: apiPaths,
-    inSource: source,
-    inExecutor: execute
-});
+const app = apiTree(source, apiPaths, execute);
+
 export default app;
