@@ -1,2 +1,3 @@
-export * from "./v23/index.js";
-export { default } from "./v23/index.js";
+import app from "./v25/index.js";
+
+export default app;
