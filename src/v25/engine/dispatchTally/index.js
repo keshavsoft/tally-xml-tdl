@@ -1,22 +1,18 @@
-import buildXml from "./buildXml.js";
+import buildXml from "./buildXml/buildXml.js";
 import transport from "./transport.js";
 import parseResponse from "./parseResponse.js";
 
-const startFunc = async ({ inEndpoint, inParam, inArgs, inUrl }) => {
+const startFunc = async ({ inEndpoint, inParam }) => {
     const localEndpoint = inEndpoint;
     const localParam = inParam;
-    const localArgs = inArgs;
-    const localUrl = inUrl;
 
     const xml = buildXml({
         inEndpoint: localEndpoint,
-        inParam: localParam,
-        inArgs: localArgs
+        inParam: localParam
     });
 
     const rawResponse = await transport({
-        inXml: xml,
-        inUrl: localUrl
+        inXml: xml
     });
 
     const parsedJson = parseResponse({

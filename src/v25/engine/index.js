@@ -1,11 +1,10 @@
-import validateInput from "./validateInput.js";
-import getEndpointSpec from "./getEndpointSpec.js";
-import dispatchTally from "./dispatchTally.js";
+import validateInput from "./validateInput/index.js";
+import getEndpointSpec from "./getEndpointSpec/index.js";
+import dispatchTally from "./dispatchTally/index.js";
 
-const startFunc = async ({ inRoutePath, inParam, inArgs, inSource }) => {
+const startFunc = async ({ inRoutePath, inParam, inSource }) => {
     const localRoutePath = inRoutePath;
     const localParam = inParam;
-    const localArgs = inArgs;
     const localSource = inSource;
 
     const param = validateInput({
@@ -19,8 +18,7 @@ const startFunc = async ({ inRoutePath, inParam, inArgs, inSource }) => {
 
     return await dispatchTally({
         inEndpoint: endpoint,
-        inParam: param,
-        inArgs: localArgs
+        inParam: param
     });
 };
 

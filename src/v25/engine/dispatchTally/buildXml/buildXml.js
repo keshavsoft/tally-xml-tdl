@@ -1,9 +1,8 @@
 import { collectionTemplate, dataTemplate } from "./templates.js";
 
-const startFunc = ({ inEndpoint, inParam, inArgs }) => {
+const startFunc = ({ inEndpoint, inParam }) => {
     const localEndpoint = inEndpoint;
     const localParam = inParam;
-    const localArgs = inArgs || [];
 
     if (localEndpoint?.reportId) {
         let staticVars = "";
@@ -16,11 +15,7 @@ const startFunc = ({ inEndpoint, inParam, inArgs }) => {
 
         if (localEndpoint.staticVariables) {
             staticVars += localEndpoint.staticVariables;
-        }
-
-        if (localArgs[0] && typeof localArgs[0] === "string") {
-            staticVars += localArgs[0];
-        }
+        };
 
         return dataTemplate
             .replace("{{ID}}", localEndpoint.reportId)
@@ -38,11 +33,7 @@ const startFunc = ({ inEndpoint, inParam, inArgs }) => {
         if (localParam.fromDate && localParam.toDate) {
             staticVars += `<SVFROMDATE TYPE="Date">${localParam.fromDate}</SVFROMDATE><SVTODATE TYPE="Date">${localParam.toDate}</SVTODATE>`;
         }
-    }
-
-    if (localArgs.length >= 2 && localArgs[0] && localArgs[1]) {
-        staticVars += `<SVFROMDATE TYPE="Date">${localArgs[0]}</SVFROMDATE><SVTODATE TYPE="Date">${localArgs[1]}</SVTODATE>`;
-    }
+    };
 
     const tdlMessage = localEndpoint?.tdl || "";
 

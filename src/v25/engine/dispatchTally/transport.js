@@ -1,6 +1,6 @@
-const startFunc = async ({ inXml, inUrl }) => {
+const startFunc = async ({ inXml }) => {
     const localXml = inXml;
-    const localUrl = inUrl || "http://localhost:9000";
+    const localUrl = "http://localhost:9000";
 
     const response = await fetch(localUrl, {
         method: "POST",
