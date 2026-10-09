@@ -1,12 +1,16 @@
 import { companyFilter } from "tally-extract";
-import tallySpec from "tally-spec";
+import validatePath from "./validatePath.js";
 
+/**
+ * Story: Fetch Company List from Tally
+ * 
+ * 1. Validates that "tally.company.fetch" exists in tally-spec schema.
+ * 2. Dispatches query to Tally with 0 external inputs via tally-extract companyFilter.
+ * 
+ * Inputs: None (0 inputs)
+ */
 const company = async () => {
-    const endpoint = tallySpec.source?.tally?.company?.fetch;
-
-    if (!endpoint?.tdl) {
-        throw new Error(`Endpoint "tally.company.fetch" is missing from tally-spec schema.`);
-    }
+    validatePath();
 
     return await companyFilter("tally.company.fetch");
 };

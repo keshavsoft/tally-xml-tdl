@@ -1,24 +1,25 @@
 import { companyAndPeriodFilter } from "tally-extract";
-import tallySpec from "tally-spec";
+import resolvePath from "./resolvePath.js";
+import validatePath from "./validatePath.js";
 
+/**
+ * Story: Fetch Vouchers from Tally
+ * 
+ * 1. Resolves the sub-route by prepending the "tally.vouchers." namespace.
+ * 2. Strictly validates that the route exists in the tally-spec JSON schema.
+ * 3. Dispatches query to Tally with date period via tally-extract companyAndPeriodFilter.
+ * 
+ * Inputs:
+ * - path: The voucher route defined in JSON (e.g. "sales.fetch", "purchases.fetch")
+ * - company: The target company name (e.g. "mani9")
+ * - fromDate: Period start date (e.g. "20260401")
+ * - toDate: Period end date (e.g. "20260401")
+ */
 const vouchers = async (path, company, fromDate, toDate) => {
-    let cleanPath = path.replace(/^tally\.vouchers\./, "");
-    let endpoint = cleanPath.split(".").reduce((acc, key) => acc?.[key], tallySpec.source?.tally?.vouchers);
+    const fullPath = resolvePath(path);
+    validatePath(fullPath);
 
-    // Support both "sales" and "sales.fetch"
-    if (!endpoint?.tdl && !cleanPath.endsWith(".fetch")) {
-        const fetchEndpoint = `${cleanPath}.fetch`.split(".").reduce((acc, key) => acc?.[key], tallySpec.source?.tally?.vouchers);
-        if (fetchEndpoint?.tdl) {
-            cleanPath = `${cleanPath}.fetch`;
-            endpoint = fetchEndpoint;
-        }
-    }
-
-    if (!endpoint?.tdl) {
-        throw new Error(`Voucher "${cleanPath}" does not exist in tally-spec schema.`);
-    }
-
-    return await companyAndPeriodFilter(`tally.vouchers.${cleanPath}`, company, fromDate, toDate);
+    return await companyAndPeriodFilter(fullPath, company, fromDate, toDate);
 };
 
 export default vouchers;

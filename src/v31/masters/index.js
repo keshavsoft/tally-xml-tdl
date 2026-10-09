@@ -1,15 +1,23 @@
 import { companyFilter } from "tally-extract";
-import tallySpec from "tally-spec";
+import resolvePath from "./resolvePath.js";
+import validatePath from "./validatePath.js";
 
+/**
+ * Story: Fetch Masters from Tally
+ * 
+ * 1. Resolves the sub-route by prepending the "tally.masters." namespace.
+ * 2. Strictly validates that the route exists in the tally-spec JSON schema.
+ * 3. Dispatches query to Tally via tally-extract companyFilter.
+ * 
+ * Inputs:
+ * - path: The master sub-route defined in JSON (e.g. "units.all", "stockItems.withBatches")
+ * - company: The target company name (e.g. "mani9")
+ */
 const masters = async (path, company) => {
-    const cleanPath = path.replace(/^tally\.masters\./, "");
-    const endpoint = cleanPath.split(".").reduce((acc, key) => acc?.[key], tallySpec.source?.tally?.masters);
+    const fullPath = resolvePath(path);
+    validatePath(fullPath);
 
-    if (!endpoint?.tdl) {
-        throw new Error(`Master "${cleanPath}" does not exist in tally-spec schema.`);
-    }
-
-    return await companyFilter(`tally.masters.${cleanPath}`, company);
+    return await companyFilter(fullPath, company);
 };
 
 export default masters;
