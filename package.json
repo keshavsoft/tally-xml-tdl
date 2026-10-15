@@ -38,6 +38,6 @@
   },
   "dependencies": {
     "tally-extract": "^1.10.2",
-    "tally-spec": "^1.2.4"
+    "tally-spec": "^1.4.1"
   }
 }
