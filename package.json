@@ -37,7 +37,7 @@
     "create-intellisense": "^1.2.1"
   },
   "dependencies": {
-    "tally-extract": "^1.15.1",
+    "tally-extract": "^1.15.2",
     "tally-spec": "^1.5.1"
   }
 }
